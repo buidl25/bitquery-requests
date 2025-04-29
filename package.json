@@ -1,0 +1,17 @@
+{
+  "name": "bitquery",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "solana": "node solana.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "ws": "^8.18.1"
+  }
+}
