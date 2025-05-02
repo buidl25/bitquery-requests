@@ -1,0 +1,66 @@
+subscription {
+    Solana{
+      TokenSupplyUpdates {
+        TokenSupplyUpdate {
+  
+          Amount
+          Currency {
+            MintAddress
+            Name
+          }
+  
+          PreBalance
+          PostBalance
+        }
+      }
+    }
+  }
+
+
+  {
+    "Solana": {
+      "TokenSupplyUpdates": [
+        {
+          "TokenSupplyUpdate": {
+            "Amount": "0.000000",
+            "Currency": {
+              "MintAddress": "8nHHGqeHMPTrbYs4KwWmLmVV5yqrnG2iL65QtMMvpump",
+              "Name": "the man who started it all"
+            },
+            "PostBalance": "1000000000.000000",
+            "PreBalance": "1000000000.000000"
+          }
+        },
+        {
+          "TokenSupplyUpdate": {
+            "Amount": "0.000000",
+            "Currency": {
+              "MintAddress": "7BjdNnf99qT2hVi1BVcNzsGGHdcPAiyngqCLW4fpump",
+              "Name": "This Is Banned In The US"
+            },
+            "PostBalance": "1000000000.000000",
+            "PreBalance": "1000000000.000000"
+          }
+        },
+        {
+          "TokenSupplyUpdate": {
+            "Amount": "0.000000",
+            "Currency": {
+              "MintAddress": "2Fi6ARL9LjGew71NQk3J5k6TAKyCyun9bJ3ZNeC9pump",
+              "Name": "p0ng"
+            },
+            "PostBalance": "999999180.205494",
+            "PreBalance": "999999180.205494"
+          }
+        },
+        {
+          "TokenSupplyUpdate": {
+            "Amount": "0.000000",
+            "Currency": {
+              "MintAddress": "C8bMgbdS12VyGSLp1MDSXFm2zv2RBkCAt22RNvSGpump",
+              "Name": "Wagecuck Simulator"
+            },
+            "PostBalance": "999999984.166008",
+            "PreBalance": "999999984.166008"
+          }
+        },

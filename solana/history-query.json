@@ -1,0 +1,91 @@
+{
+    Solana(dataset: archive) {
+      DEXTradeByTokens(
+        orderBy: { descendingByField: "Block_Timefield" }
+        where: {
+          Trade: {
+            Currency: {
+              MintAddress: { is: "6D7NaB2xsLd7cauWu1wKk6KBsJohJmP2qZH9GEfVi5Ui" }
+            }
+            Side: {
+              Currency: {
+                MintAddress: { is: "So11111111111111111111111111111111111111112" }
+              }
+            }
+            PriceAsymmetry: { lt: 0.1 }
+          }
+        }
+        limit: { count: 10 }
+      ) {
+        Block {
+          Timefield: Time(interval: { in: days, count: 1 })
+        }
+        volume: sum(of: Trade_Amount)
+        Trade {
+          high: Price(maximum: Trade_Price)
+          low: Price(minimum: Trade_Price)
+          open: Price(minimum: Block_Slot)
+          close: Price(maximum: Block_Slot)
+        }
+        count
+      }
+    }
+  }
+
+
+  resp =>
+  {
+    "Solana": {
+      "DEXTradeByTokens": [
+        {
+          "Block": {
+            "Timefield": "2025-05-01T00:00:00Z"
+          },
+          "Trade": {
+            "close": 0.00001893611935431518,
+            "high": 0.000019036768645554675,
+            "low": 0.00001845615236858438,
+            "open": 0.000018731334505539832
+          },
+          "count": "243",
+          "volume": "5617893.803681"
+        },
+        {
+          "Block": {
+            "Timefield": "2025-04-30T00:00:00Z"
+          },
+          "Trade": {
+            "close": 0.000018727881702521976,
+            "high": 0.000020987441918142556,
+            "low": 0.00001850626461561842,
+            "open": 0.000020842184453018046
+          },
+          "count": "650",
+          "volume": "25003801.390321"
+        },
+        {
+          "Block": {
+            "Timefield": "2025-04-29T00:00:00Z"
+          },
+          "Trade": {
+            "close": 0.00002100714356061541,
+            "high": 0.000022100104222407585,
+            "low": 0.000020017237258098366,
+            "open": 0.000020017237258098366
+          },
+          "count": "532",
+          "volume": "16245178.046959"
+        },
+        {
+          "Block": {
+            "Timefield": "2025-04-28T00:00:00Z"
+          },
+          "Trade": {
+            "close": 0.000019997145158090607,
+            "high": 0.000021234271456064767,
+            "low": 0.00001896009219325564,
+            "open": 0.00001934502361015021
+          },
+          "count": "838",
+          "volume": "33673959.715736"
+        },

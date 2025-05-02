@@ -1,34 +1,3 @@
-# Bitquery Streaming API Examples
-
-This repository contains examples of using the Bitquery Streaming API with different blockchains.
-
-## Solana Example (`solana.js`)
-
-This script connects to the Bitquery Streaming API via WebSocket to subscribe to real-time Solana DEX pool and order data.
-
-### Setup
-
-1.  **Install Dependencies:**
-    ```bash
-    npm install
-    ```
-2.  **Create Environment File:**
-    Create a file named `.env` in the root directory.
-3.  **Add API Token:**
-    Add your Bitquery access token to the `.env` file:
-    ```
-    BITQUERY_ACCESS_TOKEN=YOUR_API_ACCESS_TOKEN
-    ```
-    Replace `YOUR_API_ACCESS_TOKEN` with your actual token.
-
-### Usage
-
-Run the script using Node.js:
-
-```bash
-node solana.js
-```
-
 ![Image](https://github.com/user-attachments/assets/4c1f1ee4-5fc3-4bf7-8f72-d418d5235038)
 
 ### For token chart history 1 week

@@ -29,33 +29,64 @@ bitqueryConnection.on("message", (data) => {
             id: "1",
             payload: {
                 query: `
-                subscription {  
-                    Solana {
-                        DEXPools {
-                        Pool {
-                            Dex {
-                            ProtocolName
-                            ProgramAddress
-                            }
-                            Base {
-                            ChangeAmount
-                            }
-                        }
-                        ChainId
-                        PoolEvent {
-                            Index
-                        }
-                        }
-                        DEXOrders {
-                        Instruction {
-                            Accounts(maximum: Block_Height) {
-                            Address
-                            }
-                        }
-                        ChainId
-                        }
-                    } 
+                subscription {
+        Solana {
+          DEXTrades {
+            Block {
+              Time
+            }
+            Instruction {
+              Program {
+                Method
+              }
+            }
+            Trade {
+              Dex {
+                ProtocolFamily
+                ProtocolName
+              }
+              Buy {
+                Price
+                PriceInUSD
+                Amount
+                Account {
+                  Address
                 }
+                Currency {
+                  Name
+                  Symbol
+                  MintAddress
+                  Decimals
+                  Fungible
+                  Uri
+                }
+              }
+              Sell {
+                Price
+                PriceInUSD
+                Amount
+                Account {
+                  Address
+                }
+                Currency {
+                  Name
+                  Symbol
+                  MintAddress
+                  Decimals
+                  Fungible
+                  Uri
+                }
+              }
+            }
+            Transaction {
+              Signature
+              Fee
+              FeeInUSD
+              FeePayer
+            }
+          }
+        }
+      }
                 `,
             },
         });
