@@ -1,4 +1,130 @@
-![Image](https://github.com/user-attachments/assets/4c1f1ee4-5fc3-4bf7-8f72-d418d5235038)
+
+
+### List of trending tokens
+
+```json
+query TrendingTokens {
+  Solana {
+    DEXTradeByTokens(limit: {count: 30}, orderBy: {descendingByField: "tradesCountWithUniqueTraders"}) {
+      Trade {
+        Currency {
+          Name
+          Symbol
+          MintAddress
+        }
+      }
+      tradesCountWithUniqueTraders: count(distinct: Transaction_Signer)
+    }
+  }
+}
+```
+### Response 
+```json
+{
+  "Solana": {
+    "DEXTradeByTokens": [
+      {
+        "Trade": {
+          "Currency": {
+            "MintAddress": "So11111111111111111111111111111111111111112",
+            "Name": "Wrapped Solana",
+            "Symbol": "WSOL"
+          }
+        },
+        "tradesCountWithUniqueTraders": "1019126"
+      },
+      {
+        "Trade": {
+          "Currency": {
+            "MintAddress": "2ivzYvjnKqA4X3dVvPKr7bctGpbxwrXbbxm44TJCpump",
+            "Name": "gorklon rust",
+            "Symbol": "gorklon"
+          }
+        },
+        "tradesCountWithUniqueTraders": "194153"
+      },
+      {
+        "Trade": {
+          "Currency": {
+            "MintAddress": "11111111111111111111111111111111",
+            "Name": "Solana",
+            "Symbol": "SOL"
+          }
+        },
+        "tradesCountWithUniqueTraders": "78856"
+      },
+      {
+        "Trade": {
+          "Currency": {
+            "MintAddress": "HqHQZK1TYmQSgmGRD1GJdc657vYruEpd5iGEnGJoBXFj",
+            "Name": "",
+            "Symbol": ""
+          }
+        },
+        "tradesCountWithUniqueTraders": "48645"
+      },
+      {
+        "Trade": {
+          "Currency": {
+            "MintAddress": "5rX6WRhezyszRDQKSAAKMHDdH83GTYeyWESrQ8AyZREV",
+            "Name": "Baby Gork",
+            "Symbol": "BabyGork"
+          }
+        },
+        "tradesCountWithUniqueTraders": "46268"
+      },
+      {
+        "Trade": {
+          "Currency": {
+            "MintAddress": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+            "Name": "USD Coin",
+            "Symbol": "USDC"
+          }
+        },
+        "tradesCountWithUniqueTraders": "45030"
+      },
+      {
+        "Trade": {
+          "Currency": {
+            "MintAddress": "Dvknw5DQtb4hwq7ARWEnsh2G6TEgNiNLw4CE6JXfpump",
+            "Name": "Trump's Fartcoin",
+            "Symbol": "TRUMPFART"
+          }
+        },
+        "tradesCountWithUniqueTraders": "39875"
+      },
+      {
+        "Trade": {
+          "Currency": {
+            "MintAddress": "Ddm4DTxNZxABUYm2A87TFLY6GDG2ktM2eJhGZS3EbzHM",
+            "Name": "DISTRIBUTE",
+            "Symbol": "DISTRIBUTE"
+          }
+        },
+        "tradesCountWithUniqueTraders": "38796"
+      },
+      {
+        "Trade": {
+          "Currency": {
+            "MintAddress": "C6EjPrxHX7VsDXjRnJvzSvVVXoDoD3vTbybWNNvobonk",
+            "Name": "Energy",
+            "Symbol": "Energy"
+          }
+        },
+        "tradesCountWithUniqueTraders": "35001"
+      },
+      {
+        "Trade": {
+          "Currency": {
+            "MintAddress": "8hXPUGdsBfPY3kGUi3Qp3jt49QoqTzK3QuGzEsNTZREV",
+            "Name": "PerpRugs",
+            "Symbol": "PRUGS"
+          }
+        },
+        "tradesCountWithUniqueTraders": "28681"
+      },
+      
+```
 
 ### For token chart history 1 week
 ```json
@@ -491,86 +617,3 @@ query MyQuery($address: String!, $pair_address: String!, $time_24h_ago: DateTime
   }
 }
 ```
-
-### Price change 24h  BSC BNB/USDT
-
-### Params example
-```json
-{
-  "network": "bsc",
-  "from": "2024-12-04T00:00:00",
-  "limit": 100
-}
-```
-
-```json
-query getLegacyTokenCandles($limit: Int, $from: ISO8601DateTime) {
-  ethereum(network: bsc) {
-    dexTrades(
-      quoteCurrency: {is: "0x55d398326f99059ff775485246999027b3197955"}
-      time: {since: $from}
-      options: {limit: $limit, desc: "final", limitBy: {each: "baseCurrency.address, quoteCurrency.address", limit: 1}}
-      priceAsymmetry: {lt: 0.001}
-      sellCurrency: {is: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"}
-    ) {
-      timeInterval {
-        hour(count: 24)
-      }
-      baseCurrency {
-        name
-        address
-      }
-      quoteCurrency {
-        name
-        address
-      }
-      open_price: minimum(of: block, get: quote_price)
-      close_price: maximum(of: block, get: quote_price)
-      open_price_time: minimum(of: block, get: time)
-      close_price_time: maximum(of: block, get: time)
-      diff: expression(get: "close_price - open_price")
-      div: expression(get: "diff / open_price")
-      final: expression(get: "div * 100")
-    }
-  }
-}
-```
-
-### Response example
-    ```json
-    {
-  "ethereum": {
-    "dexTrades": [
-      {
-        "timeInterval": {
-          "hour": "2025-02-12 00:00:00"
-        },
-        "baseCurrency": {
-          "name": "Wrapped BNB",
-          "address": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c"
-        },
-        "quoteCurrency": {
-          "name": "Tether USD",
-          "address": "0x55d398326f99059ff775485246999027b3197955"
-        },
-        "open_price": "642.7123640229943",
-        "close_price": "698.8528738666441",
-        "open_price_time": "2025-02-12 00:00:05 UTC",
-        "close_price_time": "2025-02-12 23:59:53 UTC",
-        "diff": "56.14050984364985",
-        "div": "0.08734935405979107",
-        "final": "8.734935405979106"
-      }
-    ]
-  }
-}
-
-```
-
-
-
-
-![Image](https://github.com/user-attachments/assets/a98f3871-7169-4ae7-ae4b-2c8d053eafde)
-
-
-![Image](https://github.com/user-attachments/assets/8355545e-6e62-4f53-8a1f-9fb5b13d5da5)
